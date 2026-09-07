@@ -1,0 +1,35 @@
+<section class="carousel-container">
+  @for (slide of slides(); track $index) {
+    <div 
+      class="slide" 
+      [class.active]="$index === currentIndex()"
+      [style.background-image]="'url(' + slide.image + ')'">
+      
+      <!-- Degradado oscuro para que el texto resalte sobre la foto -->
+      <div class="slide-overlay"></div>
+
+      <!-- Contenido en bloque estilo Nike (esquina inferior izquierda) -->
+      <div class="slide-content">
+        <h2 class="slide-title">{{ slide.title }}</h2>
+        <p class="slide-description">{{ slide.description }}</p>
+        <a [href]="slide.btnLink" class="slide-btn">{{ slide.btnText }}</a>
+      </div>
+    </div>
+  }
+
+  <!-- Controles de navegación laterales -->
+  <button class="nav-arrow prev" (click)="prevSlide()" aria-label="Anterior">‹</button>
+  <button class="nav-arrow next" (click)="nextSlide()" aria-label="Siguiente">›</button>
+
+  <!-- Puntos indicadores inferiores -->
+  <div class="dots-wrapper">
+    @for (slide of slides(); track $index) {
+      <button 
+        class="dot" 
+        [class.active]="$index === currentIndex()" 
+        (click)="goToSlide($index)"
+        [attr.aria-label]="'Ir a diapositiva ' + ($index + 1)">
+      </button>
+    }
+  </div>
+</section>

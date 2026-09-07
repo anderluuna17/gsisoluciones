@@ -1,0 +1,144 @@
+.contact-area {
+  background: linear-gradient(180deg, #0267ba 0%, #0066CC 100%);
+  padding: 5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-container {
+  display: flex;
+  gap: 2rem;
+  max-width: 1100px;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+/* Tarjetas */
+.card {
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.card-info {
+  flex: 1;
+  min-width: 280px;
+  max-width: 360px;
+}
+
+.card-form {
+  flex: 2;
+  min-width: 320px;
+  max-width: 600px;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  color: #222;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.card-subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+}
+
+/* Ítems de contacto */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.icon {
+  font-size: 1.2rem;
+}
+
+/* Redes sociales circulares */
+.social-links {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.social-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.facebook { background-color: #1877f2; }
+.x-twitter { background-color: #1da1f2; }
+.linkedin { background-color: #0077b5; }
+
+/* Formulario */
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-control {
+  width: 100%;
+  border: 1px solid #dcdcdc;
+  padding: 0.85rem;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  outline: none;
+  border-radius: 2px;
+}
+
+.input-control:focus {
+  border-color: #0077b5;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-submit {
+  background-color: #0066CC; /* Azul característico */
+  color: #fff;
+  border: none;
+  padding: 0.85rem 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #0066CC;
+}
+
+/* Barra inferior */
+.footer-bar {
+  background-color: #111;
+  color: #888;
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.85rem;
+}

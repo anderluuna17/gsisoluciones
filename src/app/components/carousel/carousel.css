@@ -1,0 +1,142 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 82vh; /* Altura destacada estilo editorial Nike */
+  min-height: 520px;
+  overflow: hidden;
+  background-color: #111;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+  display: flex;
+  align-items: flex-end; /* Alinea el texto en la parte baja */
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sombra gradual para mejorar la legibilidad del texto */
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    transparent 100%
+  );
+}
+
+/* Tipografía en bloque estilo Nike */
+.slide-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 4rem 4.5rem;
+  max-width: 650px;
+}
+
+.slide-title {
+  color: #ffffff;
+  font-family: var(--font-secondary, sans-serif);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 0 0 1rem 0;
+}
+
+.slide-description {
+  color: #f1f5f9;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 0 0 1.75rem 0;
+  font-weight: 500;
+}
+
+/* Botón píldora redondeado */
+.slide-btn {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.slide-btn:hover {
+  background-color: #e2e8f0;
+  transform: scale(1.03);
+}
+
+/* Flechas laterales */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.nav-arrow:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.nav-arrow.prev { left: 1.5rem; }
+.nav-arrow.next { right: 1.5rem; }
+
+/* Puntos de posición */
+.dots-wrapper {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 3rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 3;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: width 0.25s ease, background-color 0.25s ease;
+}
+
+.dot.active {
+  width: 28px;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .slide-content {
+    padding: 0 1.5rem 3.5rem;
+  }
+  .nav-arrow { display: none; }
+}

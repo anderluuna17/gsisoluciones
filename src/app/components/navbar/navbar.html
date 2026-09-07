@@ -1,0 +1,88 @@
+<header class="navbar">
+  <!-- Lado Izquierdo: Marca / Logo + Enlaces principales -->
+  <div class="nav-left">
+    <a href="#" class="brand-logo">
+      <img src="/images/logoGSI.png" alt="Logo de GSI Soluciones" class="logo-img" />
+      <span class="brand-text">Grupo Soluciones Integrales</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#inicio" class="nav-item">Inicio</a>
+      <a href="#quienes-somos" class="nav-item">Quiénes somos</a>
+      <a href="#punto-venta" class="nav-item">Punto de venta</a>
+      <a href="#soporte-ayuda" class="nav-item">Soporte y ayuda</a>
+      
+      <!-- Botón interactivo de Tienda con clase activa -->
+      <button 
+        type="button" 
+        class="nav-item nav-btn-tab" 
+        [class.active]="isStoreOpen()" 
+        (click)="toggleStoreMenu()">
+        Tienda
+      </button>
+
+      <a href="#contacto" class="nav-item">Contacto</a>
+    </nav>
+  </div>
+
+  <!-- Lado Derecho: Utilidades + Botón de acción 
+  <div class="nav-right">
+    <a href="#" class="nav-item nav-utility">🌐 ES</a>
+    <a href="#" class="nav-item nav-utility">Ayuda</a>
+    <a href="#" class="nav-item">Iniciar sesión</a>
+    <button class="btn-signup">Regístrate</button>
+  </div>
+  -->
+
+  <!-- MEGA MENÚ DESPLEGABLE ESTILO INTEL -->
+  @if (isStoreOpen()) {
+    <div class="intel-dropdown">
+      <div class="dropdown-subheader">
+        <span class="subheader-tag">Catálogo de Productos</span>
+      </div>
+
+      <div class="dropdown-grid">
+        <!-- Columna 1: SOFTWARE -->
+        <div class="grid-column">
+          <div class="category-block">
+            <h4 class="category-title">Software</h4>
+            <ul class="item-list">
+              <li><a href="#" (click)="closeStoreMenu()">Software Facturación Electrónica</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Software Integral para Restaurantes (Versión Escritorio)</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Software Integral para Restaurantes (Versión Móvil)</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Software Emisión de Recibos de Nómina</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Software Pediátrico Expediente Clínico E Impresión de Receta</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Software Punto de Venta para Negocios</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Columna 2: PERIFÉRICOS -->
+        <div class="grid-column">
+          <div class="category-block">
+            <h4 class="category-title">Periféricos</h4>
+            <ul class="item-list">
+              <li><a href="#" (click)="closeStoreMenu()">Lector de Códigos de Barras</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Cajón de Dinero</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Mini Printer 58MM</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Mini Printer 80MM</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Columna 3: Consumibles -->
+          <div class="category-block">
+            <!-- Bloque Paquetes-->
+            <h4 class="category-title">Paquetes</h4>
+            <ul class="item-list">
+              <li><a href="#" (click)="closeStoreMenu()">Paquete Software SIR Incluido </a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Paquete de Periféricos</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Paquete Premium</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Paquete Básico ADMIN 3.3</a></li>
+              <li><a href="#" (click)="closeStoreMenu()">Paquete Intermedio ADMIN</a></li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  }
+</header>

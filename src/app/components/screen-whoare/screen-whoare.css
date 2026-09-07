@@ -1,0 +1,328 @@
+:host {
+	display: block;
+}
+
+.about-page {
+	background: #f5f7fa;
+	color: #111827;
+}
+
+.about-hero,
+.story-section,
+.purpose-section,
+.beliefs-section {
+	padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 6vw, 6rem);
+}
+
+.about-hero {
+	align-items: end;
+	background: #0066cc;
+	color: #fff;
+	display: grid;
+	gap: 3rem;
+	grid-template-columns: minmax(0, 1fr) minmax(220px, 0.35fr);
+	min-height: 48vh;
+}
+
+.about-hero__content,
+.about-hero__year,
+.story-section > *,
+.purpose-section > *,
+.beliefs-section > * {
+	max-width: 1240px;
+	width: 100%;
+}
+
+.about-hero__content {
+	justify-self: end;
+}
+
+.about-hero .section-label,
+.section-heading--light .section-label {
+	color: #ffc107;
+}
+
+.section-label {
+	color: #0066cc;
+	font-size: 0.78rem;
+	font-weight: 800;
+	letter-spacing: 0.14em;
+	margin: 0 0 1rem;
+	text-transform: uppercase;
+}
+
+.about-hero h1 {
+	font-size: clamp(3rem, 8vw, 7rem);
+	line-height: 0.9;
+	margin: 0;
+	max-width: 800px;
+}
+
+.about-hero__lead {
+	color: #e5f0ff;
+	font-size: clamp(1.1rem, 2vw, 1.4rem);
+	line-height: 1.5;
+	margin: 2rem 0 0;
+	max-width: 580px;
+}
+
+.about-hero__year {
+	align-self: end;
+	border-left: 1px solid rgba(255, 255, 255, 0.45);
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	justify-self: start;
+	padding-left: 1.5rem;
+}
+
+.about-hero__year strong {
+	color: #fff;
+	font-size: 3.2rem;
+	line-height: 1;
+}
+
+.about-hero__year span {
+	color: #dbeafe;
+	font-size: 0.9rem;
+	line-height: 1.4;
+}
+
+.story-section,
+.purpose-section,
+.beliefs-section {
+	margin: 0 auto;
+	max-width: 1480px;
+}
+
+.story-section {
+	display: grid;
+	gap: 2rem 5rem;
+	grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.section-heading h2,
+.purpose-highlight h2 {
+	font-size: clamp(2rem, 4vw, 3.8rem);
+	line-height: 1;
+	margin: 0;
+	max-width: 680px;
+}
+
+.story-copy {
+	align-self: end;
+	border-left: 3px solid #0066cc;
+	padding-left: 2rem;
+}
+
+.story-copy p,
+.purpose-highlight > p:last-child,
+.identity-card p,
+.belief-item p,
+.timeline-item p {
+	color: #526071;
+	font-size: 1rem;
+	line-height: 1.7;
+	margin: 0;
+}
+
+.story-copy p + p {
+	margin-top: 1.25rem;
+}
+
+.timeline-section {
+	background: #111827;
+	color: #fff;
+	padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 6vw, 6rem);
+}
+
+.section-heading--light,
+.timeline {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1240px;
+}
+
+.section-heading--light h2 {
+	color: #fff;
+}
+
+.timeline {
+	border-top: 1px solid #374151;
+	display: grid;
+	gap: 1px;
+	grid-template-columns: repeat(4, 1fr);
+	margin-top: 4rem;
+}
+
+.timeline-item {
+	border-right: 1px solid #374151;
+	padding: 1.5rem 1.5rem 0 0;
+}
+
+.timeline-item + .timeline-item {
+	padding-left: 1.5rem;
+}
+
+.timeline-item:last-child {
+	border-right: 0;
+}
+
+.timeline-year,
+.identity-index {
+	color: #ffc107;
+	display: block;
+	font-size: 0.8rem;
+	font-weight: 800;
+	letter-spacing: 0.1em;
+	margin-bottom: 3rem;
+	text-transform: uppercase;
+}
+
+.timeline-item h3,
+.identity-card h3,
+.belief-item h3 {
+	font-size: 1.4rem;
+	line-height: 1.1;
+	margin: 0 0 1rem;
+}
+
+.timeline-item p {
+	color: #cbd5e1;
+	font-size: 0.92rem;
+}
+
+.purpose-section {
+	display: grid;
+	gap: 4rem;
+}
+
+.purpose-highlight {
+	background: #e6f1ff;
+	border-left: 5px solid #0066cc;
+	padding: clamp(2rem, 5vw, 4rem);
+}
+
+.purpose-highlight h2 {
+	color: #0066cc;
+	max-width: 900px;
+}
+
+.purpose-highlight > p:last-child {
+	margin-top: 1.5rem;
+	max-width: 680px;
+}
+
+.identity-grid {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.identity-card {
+	background: #fff;
+	border-top: 4px solid #dbe3ec;
+	padding: 1.75rem;
+}
+
+.identity-card--blue {
+	background: #0066cc;
+	border-top-color: #ffc107;
+	color: #fff;
+}
+
+.identity-card--blue .identity-index {
+	color: #ffc107;
+}
+
+.identity-card--blue p {
+	color: #e5f0ff;
+}
+
+.beliefs-section {
+	background: #fff;
+}
+
+.beliefs-grid {
+	border-top: 1px solid #dbe3ec;
+	display: grid;
+	gap: 0 2rem;
+	grid-template-columns: repeat(3, 1fr);
+	margin-top: 4rem;
+}
+
+.belief-item {
+	border-bottom: 1px solid #dbe3ec;
+	padding: 2rem 0;
+}
+
+.belief-item h3 {
+	color: #0066cc;
+	font-size: 1.25rem;
+}
+
+@media (max-width: 900px) {
+	.about-hero,
+	.story-section {
+		display: block;
+	}
+
+	.about-hero__year {
+		margin-top: 3rem;
+	}
+
+	.story-copy {
+		margin-top: 2.5rem;
+	}
+
+	.timeline,
+	.identity-grid,
+	.beliefs-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.timeline-item:nth-child(2) {
+		border-right: 0;
+	}
+
+	.timeline-item:nth-child(3) {
+		border-top: 1px solid #374151;
+		padding-left: 0;
+	}
+
+	.timeline-item:nth-child(4) {
+		border-top: 1px solid #374151;
+	}
+}
+
+@media (max-width: 600px) {
+	.about-hero h1 {
+		font-size: clamp(3rem, 16vw, 5rem);
+	}
+
+	.timeline,
+	.identity-grid,
+	.beliefs-grid {
+		display: block;
+	}
+
+	.timeline-item,
+	.timeline-item + .timeline-item {
+		border-bottom: 1px solid #374151;
+		border-right: 0;
+		padding: 1.75rem 0;
+	}
+
+	.timeline-item:last-child {
+		border-bottom: 0;
+	}
+
+	.timeline-year,
+	.identity-index {
+		margin-bottom: 1.5rem;
+	}
+
+	.identity-card {
+		margin-bottom: 1rem;
+	}
+}
