@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+
+:root {
+  /* Paleta de colores principales */
+  --color-primary: #0066CC;
+  --color-primary-hover: #0066CC;
+  --color-secondary: #ffc107;
+  --color-accent: #17a2b8;
+  --bg-main: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-dark: #1e293b;
+  --text-main: #212529;
+  --text-muted: #6c757d;
+  --text-light: #ffffff;
+  --border-color: #e2e8f0;
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-secondary: 'Montserrat', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+#inicio,
+#quienes-somos {
+  scroll-margin-top: 90px;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* Todos los encabezados adoptan automáticamente la fuente secundaria */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}

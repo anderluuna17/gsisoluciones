@@ -194,3 +194,21 @@
     transform: translateY(0);
   }
 }
+
+
+.category-title.clickable {
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+  transition: color 0.15s ease, transform 0.1s ease;
+}
+
+/* Efecto al pasar el mouse */
+.category-title.clickable:hover {
+  color: #0071c5; /* Azul corporativo */
+}
+
+/* Efecto de click/presionado */
+.category-title.clickable:active {
+  transform: scale(0.97);
+}
