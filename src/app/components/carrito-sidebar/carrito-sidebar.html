@@ -1,0 +1,44 @@
+<aside class="cart-sidebar" aria-labelledby="cart-title">
+  <div class="cart-header">
+    <div>
+      <span class="cart-kicker">Tu selección</span>
+      <h2 id="cart-title">Carrito de compras</h2>
+    </div>
+    <span class="cart-count" aria-label="Productos en el carrito">{{ cart.items().length }}</span>
+  </div>
+
+  @if (cart.items().length === 0) {
+    <div class="cart-empty" aria-live="polite">
+      <span class="cart-empty-icon" aria-hidden="true">🛒</span>
+      <p>Tu carrito está vacío</p>
+      <span>Agrega productos desde el catálogo.</span>
+    </div>
+  } @else {
+    <div class="cart-items" aria-live="polite">
+      @for (item of cart.items(); track item.product.sku) {
+        <article class="cart-item">
+          <img [src]="item.product.image" [alt]="item.product.name" loading="lazy" />
+          <div class="cart-item-info">
+            <h3>{{ item.product.name }}</h3>
+            <span>{{ item.quantity }} x {{ item.product.price | currency:'MXN':'symbol':'1.2-2' }}</span>
+          </div>
+          <button
+            type="button"
+            class="remove-button"
+            (click)="remove(item.product.sku)"
+            [attr.aria-label]="'Eliminar ' + item.product.name">
+            ×
+          </button>
+        </article>
+      }
+    </div>
+
+    <div class="cart-summary">
+      <span>Subtotal</span>
+      <strong>{{ cart.subtotal() | currency:'MXN':'symbol':'1.2-2' }}</strong>
+    </div>
+
+    <button type="button" class="checkout-button" (click)="goToCheckout()">Continuar compra</button>
+    <button type="button" class="clear-button" (click)="clear()">Vaciar carrito</button>
+  }
+</aside>

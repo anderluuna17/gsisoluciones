@@ -1,0 +1,52 @@
+<main class="checkout-page">
+	<div class="checkout-shell">
+		<header class="checkout-heading"><span class="eyebrow">GSI Soluciones</span><h1>Proceso de compra</h1><p>Completa los datos para recibir tu solución lista para trabajar.</p></header>
+		<nav class="progress-bar" aria-label="Progreso de compra">
+			@for (step of [1, 2, 3, 4]; track step) {
+				<div class="progress-step" [class.is-active]="currentStep() >= step" [class.is-current]="currentStep() === step"><span>{{ step }}</span><strong>{{ step === 1 ? 'Selección' : step === 2 ? 'Datos de facturación' : step === 3 ? 'Pago' : 'Finalización' }}</strong></div>
+			}
+		</nav>
+
+		@if (currentStep() < 4) {
+			<div class="checkout-grid">
+				<section class="checkout-main">
+					@if (currentStep() === 1) {
+						<div class="section-title"><span class="step-label">Paso 1</span><h2>Revisa tu selección</h2></div>
+						<div class="selection-list">
+							@for (item of cart.items(); track item.product.sku) { <article class="selection-item"><img [src]="item.product.image" [alt]="item.product.name" /><div><span>{{ item.product.sku }}</span><h3>{{ item.product.name }}</h3><p>Cantidad: {{ item.quantity }}</p></div><strong>{{ item.product.price * item.quantity | currency:'MXN':'symbol':'1.2-2' }}</strong></article> } @empty { <div class="empty-checkout"><span aria-hidden="true">🛒</span><h3>Tu carrito está vacío</h3><p>Regresa a la tienda para agregar un producto.</p><button type="button" class="primary-button" (click)="returnToStore()">Volver a la tienda</button></div> }
+						</div>
+						@if (hasItems()) { <div class="step-actions"><button type="button" class="primary-button" (click)="nextStep()">Siguiente</button></div> }
+					}
+
+					@if (currentStep() === 2) {
+						<div class="section-title"><span class="step-label">Paso 2</span><h2>Datos de facturación</h2></div>
+						<form class="checkout-form" (ngSubmit)="nextStep()">
+							<label>Tipo de contribuyente<select name="taxpayerType" [(ngModel)]="billingData.taxpayerType"><option>Persona Física</option><option>Persona Moral</option></select></label>
+							<label>R.F.C.<input name="rfc" [(ngModel)]="billingData.rfc" placeholder="RFC XXXX-XXXX" required /></label>
+							<label class="full-field">Razón Social / Nombre Completo<input name="name" [(ngModel)]="billingData.name" placeholder="Razón Social / Nombre Completo" required /></label>
+							<label class="full-field">Correo Electrónico para CFDI<input type="email" name="email" [(ngModel)]="billingData.email" placeholder="correo@ejemplo.com" required /></label>
+							<label class="full-field">Uso de CFDI<select name="cfdiUse" [(ngModel)]="billingData.cfdiUse"><option>Gastos en general</option><option>Adquisición de mercancías</option><option>Equipo de transporte</option></select></label>
+							<label class="checkbox-field"><input type="checkbox" name="additionalContact" [(ngModel)]="billingData.additionalContact" /> Desea incluir datos de contacto adicionales?</label>
+							<div class="step-actions full-field"><button type="button" class="secondary-button" (click)="previousStep()">Anterior</button><button type="submit" class="primary-button">Siguiente</button></div>
+						</form>
+					}
+
+					@if (currentStep() === 3) {
+						<div class="section-title"><span class="step-label">Paso 3</span><h2>Métodos de pago</h2></div>
+						<div class="payment-options">
+							<label class="payment-option"><input type="radio" name="payment" [checked]="paymentMethod() === 'card'" (change)="choosePayment('card')" /> Pago con tarjeta de crédito/débito <span>VISA · AMEX · Mastercard</span></label>
+							@if (paymentMethod() === 'card') { <div class="payment-form"><input name="cardNumber" [(ngModel)]="cardData.number" placeholder="Número de tarjeta" /><input name="cardName" [(ngModel)]="cardData.name" placeholder="Nombre en la tarjeta" /><div><input name="expiration" [(ngModel)]="cardData.expiration" placeholder="Fecha de vencimiento (MM/AA)" /><input name="cvv" [(ngModel)]="cardData.cvv" placeholder="C.V.V." /></div></div> }
+							<label class="payment-option"><input type="radio" name="payment" [checked]="paymentMethod() === 'spei'" (change)="choosePayment('spei')" /> Pago con transferencia (SPEI)</label>
+							@if (paymentMethod() === 'spei') { <div class="payment-form"><input name="clabe" [(ngModel)]="transferData.clabe" placeholder="CLABE: XXXX-XXXXXXXX-XXXX" /></div> }
+							<label class="payment-option"><input type="radio" name="payment" [checked]="paymentMethod() === 'bank'" (change)="choosePayment('bank')" /> Transferencia bancaria (SPEI)</label><label class="payment-option"><input type="radio" name="payment" [checked]="paymentMethod() === 'oxxo'" (change)="choosePayment('oxxo')" /> Pago en Oxxo / 7-Eleven</label>
+						</div>
+						<div class="step-actions"><button type="button" class="secondary-button" (click)="previousStep()">Anterior</button><button type="button" class="primary-button" (click)="finishPurchase()">Proceder al pago</button></div>
+					}
+				</section>
+				<aside class="order-summary"><div class="summary-heading"><h2>Resumen del carrito</h2><a routerLink="/store">Volver a la tienda</a></div>@for (item of cart.items(); track item.product.sku) { <div class="summary-product"><img [src]="item.product.image" [alt]="item.product.name" /><div><strong>{{ item.product.name }}</strong><span>SKU: {{ item.product.sku }}</span></div></div> }<div class="summary-lines"><p>Subtotal <strong>{{ cart.subtotal() | currency:'MXN':'symbol':'1.2-2' }}</strong></p><p>Descuento aplicado (5%) <strong>- {{ cart.discount() | currency:'MXN':'symbol':'1.2-2' }}</strong></p><p>IVA (16%) <strong>{{ cart.tax() | currency:'MXN':'symbol':'1.2-2' }}</strong></p><p class="summary-total">Total <strong>{{ cart.total() | currency:'MXN':'symbol':'1.2-2' }}</strong></p></div></aside>
+			</div>
+		} @else {
+			<section class="completion-screen"><div class="success-mark" aria-hidden="true">✓</div><span class="eyebrow">Compra confirmada</span><h2>Tu solución ya está en camino</h2><p>Recibimos tu pedido correctamente. En breve enviaremos los datos de acceso y seguimiento a <strong>{{ billingData.email || 'tu correo registrado' }}</strong>.</p><div class="confirmation-card"><span>Número de pedido</span><strong>{{ orderNumber }}</strong><span>Total pagado</span><strong>{{ cart.total() | currency:'MXN':'symbol':'1.2-2' }}</strong></div><a class="primary-button" routerLink="/store">Volver a la tienda</a></section>
+		}
+	</div>
+</main>

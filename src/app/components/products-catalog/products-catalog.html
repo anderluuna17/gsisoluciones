@@ -1,5 +1,6 @@
 <section class="catalog-section">
-  <div class="catalog-container">
+  <div class="catalog-layout">
+    <div class="catalog-container">
 
     <!-- Itera sobre cada sección (Software, Paquetes, Periféricos) -->
     <article *ngFor="let cat of categories; let i = index" class="category-block">
@@ -51,15 +52,17 @@
               <span class="currency">MXN</span>
               <span class="price">{{ product.price | currency:'USD':'symbol':'1.2-2' }}</span>
             </div>
-            <button type="button" class="btn-action" (click)="selectProduct(product)">
-              Detalles
+            <button type="button" class="btn-action" (click)="addToCart(product)">
+              Agregar
             </button>
           </div>
 
         </div>
       </div>
 
-    </article>
+      </article>
 
+    </div>
+      <app-carrito-sidebar />
   </div>
 </section>

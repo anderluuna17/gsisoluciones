@@ -129,7 +129,11 @@
 }
 
 .dropdown-subheader {
-  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Empuja 'Productos' a la izquierda y el carrito al extremo derecho */
+  width: 100%;
+  margin-bottom: 2rem;            /* Separa el encabezado de las columnas de abajo */
 }
 
 .subheader-tag {
@@ -211,4 +215,22 @@
 /* Efecto de click/presionado */
 .category-title.clickable:active {
   transform: scale(0.97);
+}
+
+
+.icono-carrito {
+  background-color: #e0f2fe;
+  color: #000000;
+  padding: 0.35rem 0.85rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.icono-carrito:hover {
+  background-color: #bae6fd;
 }

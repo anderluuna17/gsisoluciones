@@ -1,0 +1,62 @@
+<main class="support-page">
+	<section class="support-hero">
+		<div class="support-hero__content">
+			<span class="eyebrow">Centro de soporte GSI</span>
+			<h1>Encuentra el camino para seguir trabajando.</h1>
+			<p>Guías, tutoriales y atención directa para que aproveches cada herramienta de tus soluciones GSI.</p>
+			<div class="hero-actions">
+				<a class="button button--primary" href="https://www.youtube.com/@GSI_SistemasOne" target="_blank" rel="noopener">Ver tutoriales</a>
+				<a class="button button--outline" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+			</div>
+		</div>
+		<div class="hero-index" aria-label="Canales de soporte">
+			<strong>01</strong><span>Aprende a tu ritmo</span>
+			<strong>02</strong><span>Resuelve tus dudas</span>
+            
+		</div>
+	</section>
+
+	<section class="support-section software-section">
+		<div class="section-heading">
+			<div><span class="eyebrow">Soporte por producto</span><h2>Elige el software que utilizas</h2></div>
+			<p>Consulta los tutoriales para cada uno de los productos que utilizas.</p>
+		</div>
+		<div class="product-grid">
+			@for (product of products; track product.name) {
+				<article class="software-card" [class]="'software-card--' + product.accent">
+					<span class="card-number">0{{ $index + 1 }}</span>
+					<h3>{{ product.name }}</h3>
+					<p>{{ product.description }}</p>
+					<ul>
+						@for (topic of product.topics; track topic) { <li><span aria-hidden="true">+</span>{{ topic }}</li> }
+					</ul>
+					<a routerLink="/store" class="text-link">Ver Tutorial <span aria-hidden="true">→</span></a>
+				</article>
+			}
+		</div>
+	</section>
+
+	<section class="support-section learning-section">
+		<div class="section-heading section-heading--light">
+			<div><span class="eyebrow">Aprende paso a paso</span><h2>Instrucciones detalladas</h2></div>
+			<p>Visita nuestro canal para encontrar demostraciones y tutoriales de las funciones más importantes.</p>
+		</div>
+		<div class="learning-grid">
+			<a class="learning-link learning-link--video" href="https://www.youtube.com/@GSI_SistemasOne" target="_blank" rel="noopener"><span class="play-icon" aria-hidden="true">▶</span><span><strong>Tutoriales en YouTube</strong><small>Guías visuales para comenzar</small></span><span aria-hidden="true">↗</span></a>
+			<a class="learning-link learning-link--whatsapp" target="_blank" rel="noopener"><span class="contact-icon" aria-hidden="true">WA</span><span><strong>Atención por WhatsApp</strong><small>Resuelve una duda con nuestro equipo</small></span><span aria-hidden="true">↗</span></a>
+			<a class="learning-link learning-link--email" ><span class="contact-icon" aria-hidden="true">@</span><span><strong>Escríbenos por correo</strong><small>ventas@gsisoluciones.com</small></span><span aria-hidden="true">↗</span></a>
+		</div>
+	</section>
+
+	<section class="support-section faq-section">
+		<div class="section-heading"><div><span class="eyebrow">Preguntas frecuentes</span><h2>¿Cómo puedo...?</h2></div><p>Respuestas rápidas.</p></div>
+		<div class="faq-list">
+			@for (faq of faqs; track faq.question) {
+				<article class="faq-item" [class.faq-item--open]="activeFaq === $index">
+					<button type="button" class="faq-question" [attr.aria-expanded]="activeFaq === $index" (click)="toggleFaq($index)"><span>{{ faq.question }}</span><strong aria-hidden="true">{{ activeFaq === $index ? '−' : '+' }}</strong></button>
+					@if (activeFaq === $index) { <p class="faq-answer">{{ faq.answer }}</p> }
+				</article>
+			}
+		</div>
+	</section>
+</main>

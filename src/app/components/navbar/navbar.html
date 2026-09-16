@@ -9,8 +9,7 @@
     <nav class="nav-links">
       <a href="#inicio" class="nav-item">Inicio</a>
       <a href="#quienes-somos" class="nav-item">Quiénes somos</a>
-      <a href="#punto-venta" class="nav-item">Punto de venta</a>
-      <a href="#soporte-ayuda" class="nav-item">Soporte y ayuda</a>
+      <a routerLink="/soporte-ayuda" class="nav-item">Soporte y ayuda</a>
 
       <!-- Botón interactivo de Tienda con clase activa -->
       <button type="button" class="nav-item nav-btn-tab" [class.active]="isStoreOpen()" (click)="toggleStoreMenu()">
@@ -35,6 +34,8 @@
   <div class="intel-dropdown">
     <div class="dropdown-subheader">
       <a class="subheader-tag" routerLink="/store" (click)="closeStoreMenu()">Productos</a>
+      <a class="icono-carrito" routerLink="/carrito-shop" (click)="closeStoreMenu()">🛒 (0)</a>
+      
     </div>
 
     <div class="dropdown-grid">
