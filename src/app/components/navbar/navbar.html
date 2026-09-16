@@ -34,7 +34,7 @@
   @if (isStoreOpen()) {
   <div class="intel-dropdown">
     <div class="dropdown-subheader">
-      <span class="subheader-tag">Catálogo de Productos</span>
+      <a class="subheader-tag" routerLink="/store" (click)="closeStoreMenu()">Productos</a>
     </div>
 
     <div class="dropdown-grid">

@@ -1,0 +1,65 @@
+<section class="catalog-section">
+  <div class="catalog-container">
+
+    <!-- Itera sobre cada sección (Software, Paquetes, Periféricos) -->
+    <article *ngFor="let cat of categories; let i = index" class="category-block">
+      
+      <!-- Encabezado de categoría con controles de navegación -->
+      <div class="category-header">
+        <div class="category-info">
+          <span class="section-label">{{ cat.tag }}</span>
+          <h2 class="category-title">{{ cat.name }}</h2>
+        </div>
+        <div class="carousel-controls">
+          <button 
+            type="button" 
+            class="control-btn" 
+            (click)="scrollCarousel(slider, -1)" 
+            aria-label="Desplazar a la izquierda">
+            &#8592;
+          </button>
+          <button 
+            type="button" 
+            class="control-btn" 
+            (click)="scrollCarousel(slider, 1)" 
+            aria-label="Desplazar a la derecha">
+            &#8594;
+          </button>
+        </div>
+      </div>
+
+      <!-- Pista del carrusel -->
+      <div class="carousel-track" #slider>
+        <div 
+          *ngFor="let product of cat.products" 
+          class="product-card" 
+          [class.product-card--featured]="product.featured">
+          
+          <div class="card-media">
+            <span *ngIf="product.badge" class="product-badge">{{ product.badge }}</span>
+            <img [src]="product.image" [alt]="product.name" loading="lazy" />
+          </div>
+
+          <div class="card-body">
+            <span class="product-sku">{{ product.sku }}</span>
+            <h3 class="product-name">{{ product.name }}</h3>
+            <p class="product-desc">{{ product.description }}</p>
+          </div>
+
+          <div class="card-footer">
+            <div class="price-wrap">
+              <span class="currency">MXN</span>
+              <span class="price">{{ product.price | currency:'USD':'symbol':'1.2-2' }}</span>
+            </div>
+            <button type="button" class="btn-action" (click)="selectProduct(product)">
+              Detalles
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </article>
+
+  </div>
+</section>
