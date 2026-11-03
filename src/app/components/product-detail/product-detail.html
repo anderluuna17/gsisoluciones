@@ -1,0 +1,60 @@
+<main class="product-detail-page">
+  <div class="detail-shell">
+    <a class="back-link" routerLink="/store">← Volver al catálogo</a>
+
+    @if (cartMessage()) {
+      <p class="cart-message" role="status" aria-live="polite">
+        <span aria-hidden="true">✓</span>
+        {{ cartMessage() }}
+      </p>
+    }
+
+    <div class="detail-layout">
+      <section class="detail-card" aria-labelledby="product-title">
+        <div class="detail-media">
+          <span class="detail-badge">Soluciones digitales</span>
+          <img [src]="product.image" [alt]="product.name" />
+        </div>
+
+        <div class="detail-copy">
+          <span class="product-sku">{{ product.sku }}</span>
+          <h1 id="product-title">{{ product.name }}</h1>
+          <p class="manufacturer">{{ detail.manufacturer }}</p>
+          <p class="description">{{ detail.description }}</p>
+
+          <div class="features">
+            <h2>Características y funcionalidades</h2>
+            <ul>
+              @for (feature of features; track feature) {
+                <li>{{ feature }}</li>
+              }
+            </ul>
+          </div>
+
+          @if (additionalServices.length) {
+            <div class="additional-services">
+              <h2>Incluye también</h2>
+              <ul>
+                @for (service of additionalServices; track service) {
+                  <li>{{ service }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          <div class="purchase-row">
+            <div class="price">
+              <span>Precio</span>
+              <strong>{{ product.price | currency:'MXN':'symbol':'1.2-2' }}</strong>
+            </div>
+            <button type="button" class="add-button" (click)="addToCart()">
+              Añadir al carrito
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <app-carrito-sidebar />
+    </div>
+  </div>
+</main>

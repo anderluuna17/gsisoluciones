@@ -1,35 +1,19 @@
-<section class="catalog-section">
-  <div class="catalog-layout">
+<section class="catalog-section" id="catalogo-productos">
+  <div class="catalog-layout" [class.catalog-layout--without-cart]="!showCart">
     <div class="catalog-container">
 
-    <!-- Itera sobre cada sección (Software, Paquetes, Periféricos) -->
-    <article *ngFor="let cat of categories; let i = index" class="category-block">
+    <!-- Secciones de productos agrupadas por categoría -->
+    <article *ngFor="let cat of visibleCategories; let i = index" class="category-block">
       
-      <!-- Encabezado de categoría con controles de navegación -->
+      <!-- Encabezado de categoría -->
       <div class="category-header">
         <div class="category-info">
           <span class="section-label">{{ cat.tag }}</span>
           <h2 class="category-title">{{ cat.name }}</h2>
         </div>
-        <div class="carousel-controls">
-          <button 
-            type="button" 
-            class="control-btn" 
-            (click)="scrollCarousel(slider, -1)" 
-            aria-label="Desplazar a la izquierda">
-            &#8592;
-          </button>
-          <button 
-            type="button" 
-            class="control-btn" 
-            (click)="scrollCarousel(slider, 1)" 
-            aria-label="Desplazar a la derecha">
-            &#8594;
-          </button>
-        </div>
       </div>
 
-      <!-- Pista del carrusel -->
+      <!-- Cuadrícula responsive de productos -->
       <div class="carousel-track" #slider>
         <div 
           *ngFor="let product of cat.products" 
@@ -45,6 +29,20 @@
             <span class="product-sku">{{ product.sku }}</span>
             <h3 class="product-name">{{ product.name }}</h3>
             <p class="product-desc">{{ product.description }}</p>
+            <a
+              *ngIf="hasDetail(product); else noDetailLink"
+              class="card-view-hint"
+              [routerLink]="['/producto', getProductSlug(product)]"
+            >
+              Consultar producto
+              <span aria-hidden="true">↗</span>
+            </a>
+            <ng-template #noDetailLink>
+              <span class="card-view-hint">
+                Consultar producto
+                <span aria-hidden="true">↗</span>
+              </span>
+            </ng-template>
           </div>
 
           <div class="card-footer">
@@ -63,6 +61,6 @@
       </article>
 
     </div>
-      <app-carrito-sidebar />
+      <app-carrito-sidebar *ngIf="showCart" />
   </div>
 </section>

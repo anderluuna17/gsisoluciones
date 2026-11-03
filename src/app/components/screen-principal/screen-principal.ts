@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CarouselComponent } from '../carousel/carousel';
-import { ScreenWhoare } from '../screen-whoare/screen-whoare';
+import { ProductsCatalog } from '../products-catalog/products-catalog';
 
 
 @Component({
   selector: 'app-screen-principal',
-  imports: [CarouselComponent, ScreenWhoare],
+  imports: [CarouselComponent, ProductsCatalog],
   templateUrl: './screen-principal.html',
   styleUrl: './screen-principal.css',
 })

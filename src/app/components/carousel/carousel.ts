@@ -43,7 +43,16 @@ export class CarouselComponent implements OnInit, OnDestroy {
       description: 'Optimiza la gestión de pacientes y citas médicas.',
       btnText: 'Ver Software',
       btnLink: '#tienda'
+    },
+
+    {
+      image: '/images/cafeteria.jpeg',
+      title: 'CAFETERIA INTERFAZ',
+      description: 'Sistema intuitivo para la gestión de pedidos y atención al cliente.',
+      btnText: 'Ver Software',
+      btnLink: '#tienda'
     }
+
   ]);
 
   protected currentIndex = signal(0);

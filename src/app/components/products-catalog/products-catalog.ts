@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { CarritoSidebar } from '../carrito-sidebar/carrito-sidebar';
 import { CartService } from '../carrito-shop/cart.service';
 
@@ -22,12 +23,14 @@ interface ProductCategory {
 
 @Component({
   selector: 'app-products-catalog',
-  imports: [CommonModule, CarritoSidebar],
+  imports: [CommonModule, CarritoSidebar, RouterLink],
   templateUrl: './products-catalog.html',
   styleUrls: ['./products-catalog.css']
 })
 export class ProductsCatalog {
   readonly cart = inject(CartService);
+  @Input() softwareOnly = false;
+  @Input() showCart = true;
   
   // Estructura de datos agrupada por categoría
   categories: ProductCategory[] = [
@@ -40,7 +43,8 @@ export class ProductsCatalog {
         { id: '3', sku: 'SFT-03', name: 'SIR POS: Software para Restaurante (Versión Móvil)', description: 'Cálculo automatizado de sueldos y timbrado masivo.', price: 3550, image: '/images/SIR-POS-Movil.png', badge: 'Popular', featured: true  },
         { id: '3', sku: 'SFT-03', name: 'Emisor de Recibos de Nómina', description: 'Realización de recibos de nómina con timbrado fiscal.', price: 799, image: '/images/nomina.png' },
         { id: '4', sku: 'SFT-04', name: 'Software Pediatrico', description: 'Respaldos automatizados y monitoreo continuo.', price: 2599, image: '/images/pediatria.png' },
-        { id: '5', sku: 'SFT-05', name: 'ADMIN PDV Software de Punto de Venta', description: 'Respaldos automatizados y monitoreo continuo.', price: 1890, image: '/images/ADMIN-PDV.png' }
+        { id: '5', sku: 'SFT-05', name: 'ADMIN PDV Software de Punto de Venta', description: 'Respaldos automatizados y monitoreo continuo.', price: 1890, image: '/images/ADMIN-PDV.png' },
+        { id: '6', sku: 'SFT-06', name: 'Software de Punto de Venta para Cafeterías', description: 'Sistema intuitivo para la gestión de pedidos y atención al cliente.', price: 2000, image: '/images/cafeteria.jpeg' }
       ]
     },
     {
@@ -66,6 +70,10 @@ export class ProductsCatalog {
     }
   ];
 
+  get visibleCategories(): ProductCategory[] {
+    return this.softwareOnly ? this.categories.filter(category => category.name === 'Software') : this.categories;
+  }
+
   // Desplazamiento dinámico basado en el ancho visible
   scrollCarousel(slider: HTMLElement, direction: number): void {
     const card = slider.querySelector('.product-card') as HTMLElement;
@@ -78,5 +86,28 @@ export class ProductsCatalog {
 
   addToCart(product: Product): void {
     this.cart.add(product);
+  }
+
+  hasDetail(product: Product): boolean {
+    return [
+      'Facturación Electrónica',
+      'SIR POS: Software para Restaurante (Versión Escritorio)',
+      'SIR POS: Software para Restaurante (Versión Móvil)',
+      'Emisor de Recibos de Nómina',
+      'Software Pediatrico',
+      'ADMIN PDV Software de Punto de Venta',
+    ].includes(product.name);
+  }
+
+  getProductSlug(product: Product): string {
+    const slugs: Record<string, string> = {
+      'Facturación Electrónica': 'facturacion-electronica',
+      'SIR POS: Software para Restaurante (Versión Escritorio)': 'restaurante-escritorio',
+      'SIR POS: Software para Restaurante (Versión Móvil)': 'restaurante-movil',
+      'Emisor de Recibos de Nómina': 'nomina',
+      'Software Pediatrico': 'software-pediatrico',
+      'ADMIN PDV Software de Punto de Venta': 'punto-de-venta',
+    };
+    return slugs[product.name];
   }
 }
